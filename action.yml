@@ -1,0 +1,14 @@
+name: Get Parameters From AWS Systems Manager Parameter Store by Python Script Using Boto3 Library
+
+description: Action Responsible for Getting Parameters from AWS Systems Manager Parameter Store
+
+runs:
+  using: "composite"
+  steps:
+    - name: Get Parameters from AWS Systems Manager Parameter Store
+      env:
+        PARAMETER_IDENTIFIER: "/${{ env.SERVER }}/${{ env.GITHUB_REPO_NAME }}/"
+      run: |
+        chmod +x ${{ github.action_path }}/scripts/get_parameters_aws.py
+        ${{ github.action_path }}/scripts/get_parameters_aws.py
+      shell: bash
